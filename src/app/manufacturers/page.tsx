@@ -1,8 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Metadata } from 'next';
 import { getTruckManufacturers, getTruckModels } from '@/lib/services/products';
-import { Truck, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Truck, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'European Truck Manufacturers & Spares',
@@ -39,8 +40,20 @@ export default async function ManufacturersPage() {
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-brand-navy flex items-center justify-center text-brand-orange">
-                    <Truck className="w-6 h-6" />
+                  <div className="w-14 h-14 rounded-xl bg-white border border-slate-200 shadow-2xs flex items-center justify-center overflow-hidden relative p-1.5">
+                    {brand.logoUrl ? (
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={brand.logoUrl}
+                          alt={brand.name}
+                          fill
+                          sizes="56px"
+                          className="object-contain p-0.5"
+                        />
+                      </div>
+                    ) : (
+                      <Truck className="w-6 h-6 text-brand-navy" />
+                    )}
                   </div>
                   <span className="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full font-semibold">
                     {brand.country}

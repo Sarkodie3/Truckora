@@ -2,9 +2,10 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getCategoryBySlug, getProducts } from '@/lib/services/products';
 import ProductCard from '@/components/products/ProductCard';
-import { ChevronRight, ArrowLeft } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -47,9 +48,9 @@ export default async function CategoryDetailPage({ params }: Props) {
         <span className="text-slate-800 font-semibold">{category.name}</span>
       </nav>
 
-      {/* Category Hero Banner */}
-      <div className="bg-white rounded-xl border border-truckora-border p-6 sm:p-8 mb-8 shadow-xs">
-        <div className="max-w-2xl">
+      {/* Category Hero Banner with Authentic Reference Image */}
+      <div className="bg-white rounded-xl border border-truckora-border overflow-hidden mb-8 shadow-xs flex flex-col md:flex-row items-stretch justify-between">
+        <div className="p-6 sm:p-8 max-w-2xl flex-1 flex flex-col justify-center">
           <div className="text-brand-orange font-bold text-xs uppercase tracking-wider mb-1">
             Category Showcase
           </div>
@@ -59,7 +60,7 @@ export default async function CategoryDetailPage({ params }: Props) {
           <p className="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed">
             {category.description}
           </p>
-          <div className="mt-4 flex items-center gap-4 text-xs font-semibold text-slate-600">
+          <div className="mt-4 flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-600">
             <span className="bg-slate-100 px-3 py-1 rounded-full border border-slate-200">
               {total} verified parts in stock
             </span>
@@ -71,6 +72,19 @@ export default async function CategoryDetailPage({ params }: Props) {
             </Link>
           </div>
         </div>
+
+        {category.imageUrl && (
+          <div className="relative w-full md:w-80 h-48 md:h-auto min-h-[180px] bg-slate-100 shrink-0">
+            <Image
+              src={category.imageUrl}
+              alt={category.name}
+              fill
+              sizes="(max-width: 768px) 100vw, 320px"
+              className="object-cover"
+              priority
+            />
+          </div>
+        )}
       </div>
 
       {/* Products Grid */}

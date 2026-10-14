@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ChevronRight, Truck } from 'lucide-react';
 import { TRUCK_MANUFACTURERS } from '@/lib/data/mock-data';
 
@@ -35,13 +36,25 @@ export default function BrowseByBrand() {
             <Link
               key={brand.id}
               href={`/manufacturers/${brand.slug}`}
-              className="bg-slate-50 hover:bg-white rounded-lg border border-slate-200 hover:border-brand-navy hover:shadow-md p-4 text-center transition-all flex flex-col items-center justify-center gap-2 group"
+              className="bg-slate-50 hover:bg-white rounded-xl border border-slate-200 hover:border-brand-navy hover:shadow-md p-4 text-center transition-all flex flex-col items-center justify-center gap-2.5 group"
             >
-              <div className="w-12 h-12 rounded-full bg-brand-navy/5 group-hover:bg-brand-navy group-hover:text-white flex items-center justify-center transition-colors text-brand-navy">
-                <Truck className="w-6 h-6" />
+              <div className="w-14 h-14 rounded-xl bg-white border border-slate-200 group-hover:border-brand-navy shadow-2xs flex items-center justify-center overflow-hidden relative p-1.5 transition-colors">
+                {brand.logoUrl ? (
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={brand.logoUrl}
+                      alt={brand.name}
+                      fill
+                      sizes="56px"
+                      className="object-contain p-0.5 group-hover:scale-105 transition-transform"
+                    />
+                  </div>
+                ) : (
+                  <Truck className="w-6 h-6 text-brand-navy" />
+                )}
               </div>
               <div>
-                <span className="font-bold text-sm text-slate-800 group-hover:text-brand-navy transition-colors block">
+                <span className="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-brand-navy transition-colors block">
                   {brand.name}
                 </span>
                 <span className="text-[10px] text-slate-400 font-medium">

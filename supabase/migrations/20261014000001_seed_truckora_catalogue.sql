@@ -52,22 +52,22 @@ VALUES
 ON CONFLICT (manufacturer_id, slug) DO NOTHING;
 
 -- 3. SEED CATEGORIES (13 Core Truck Spares Categories)
-INSERT INTO public.categories (id, name, slug, description, icon_name, display_order)
+INSERT INTO public.categories (id, name, slug, description, icon_name, image_url, display_order)
 VALUES
-    ('c0000000-0000-0000-0000-000000000001', 'Engines & Components', 'engines', 'Complete engines, cylinder heads, crankshafts, turbos and overhaul kits.', 'Cog', 1),
-    ('c0000000-0000-0000-0000-000000000002', 'Gearboxes & Transmission', 'gearboxes-and-transmission', 'Manual, automated (TraXon, I-Shift, Opticruise) and retarders.', 'Activity', 2),
-    ('c0000000-0000-0000-0000-000000000003', 'Brakes & Air Systems', 'brakes', 'Calipers, brake discs, air compressors, EBS valves, brake chambers.', 'Disc', 3),
-    ('c0000000-0000-0000-0000-000000000004', 'Clutch Systems', 'clutch', 'Clutch kits, flywheels, release bearings and clutch servos.', 'RotateCw', 4),
-    ('c0000000-0000-0000-0000-000000000005', 'Cabin & Body Parts', 'cabin-and-body-parts', 'Bumpers, headlights, grilles, cab suspension, mirrors and steps.', 'Truck', 5),
-    ('c0000000-0000-0000-0000-000000000006', 'Chassis & Suspension', 'chassis-and-suspension', 'Air bellows, shock absorbers, leaf springs, stabilizers and torque rods.', 'Anchor', 6),
-    ('c0000000-0000-0000-0000-000000000007', 'Electrical & Electronics', 'electrical-and-electronics', 'Alternators, starter motors, ECUs, sensors, wiring harnesses.', 'Zap', 7),
-    ('c0000000-0000-0000-0000-000000000008', 'Cooling Systems', 'cooling-systems', 'Radiators, charge air coolers (intercoolers), viscous fans, water pumps.', 'Thermometer', 8),
-    ('c0000000-0000-0000-0000-000000000009', 'Fuel Systems', 'fuel-systems', 'High-pressure common rail pumps, injectors, tanks and fuel filters.', 'Droplets', 9),
-    ('c0000000-0000-0000-0000-000000000010', 'Exhaust & Aftertreatment', 'exhaust-and-aftertreatment', 'AdBlue dosing units, DPF filters, SCR catalysts, NOx sensors.', 'Wind', 10),
-    ('c0000000-0000-0000-0000-000000000011', 'Steering', 'steering', 'Steering gearboxes, power steering pumps, drag links and tie rods.', 'Compass', 11),
-    ('c0000000-0000-0000-0000-000000000012', 'Hydraulics', 'hydraulics', 'PTO pumps, tipping valves, hydraulic oil tanks and cylinders.', 'Gauge', 12),
-    ('c0000000-0000-0000-0000-000000000013', 'Tyres & Rims', 'tyres-and-rims', 'Alcoa forged aluminium wheels, steel rims, wheel studs and hub caps.', 'Circle', 13)
-ON CONFLICT (name) DO UPDATE SET description = EXCLUDED.description, display_order = EXCLUDED.display_order;
+    ('c0000000-0000-0000-0000-000000000001', 'Engines & Components', 'engines', 'Complete engines, cylinder heads, crankshafts, turbos and overhaul kits.', 'Cog', 'https://cms.media.basworld.com/i/basgroup/engine?w=800&fmt=auto', 1),
+    ('c0000000-0000-0000-0000-000000000002', 'Gearboxes & Transmission', 'gearboxes-and-transmission', 'Manual, automated (TraXon, I-Shift, Opticruise) and retarders.', 'Activity', 'https://cms.media.basworld.com/i/basgroup/gearbox?w=800&fmt=auto', 2),
+    ('c0000000-0000-0000-0000-000000000003', 'Brakes & Air Systems', 'brakes', 'Calipers, brake discs, air compressors, EBS valves, brake chambers.', 'Disc', 'https://cms.media.basworld.com/i/basgroup/Remklauw?w=800&fmt=auto', 3),
+    ('c0000000-0000-0000-0000-000000000004', 'Clutch Systems', 'clutch', 'Clutch kits, flywheels, release bearings and clutch servos.', 'RotateCw', 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80', 4),
+    ('c0000000-0000-0000-0000-000000000005', 'Cabin & Body Parts', 'cabin-and-body-parts', 'Bumpers, headlights, grilles, cab suspension, mirrors and steps.', 'Truck', 'https://cms.media.basworld.com/i/basgroup/cabine?w=800&fmt=auto', 5),
+    ('c0000000-0000-0000-0000-000000000006', 'Chassis & Suspension', 'chassis-and-suspension', 'Air bellows, shock absorbers, leaf springs, stabilizers and torque rods.', 'Anchor', 'https://cms.media.basworld.com/i/basgroup/as?w=800&fmt=auto', 6),
+    ('c0000000-0000-0000-0000-000000000007', 'Electrical & Electronics', 'electrical-and-electronics', 'Alternators, starter motors, ECUs, sensors, wiring harnesses.', 'Zap', 'https://cms.media.basworld.com/i/basgroup/Dynamo?w=800&fmt=auto', 7),
+    ('c0000000-0000-0000-0000-000000000008', 'Cooling Systems', 'cooling-systems', 'Radiators, charge air coolers (intercoolers), viscous fans, water pumps.', 'Thermometer', 'https://cms.media.basworld.com/i/basgroup/Radiator?w=800&fmt=auto', 8),
+    ('c0000000-0000-0000-0000-000000000009', 'Fuel Systems', 'fuel-systems', 'High-pressure common rail pumps, injectors, tanks and fuel filters.', 'Droplets', 'https://cms.media.basworld.com/i/basgroup/Brandstofpomp?w=800&fmt=auto', 9),
+    ('c0000000-0000-0000-0000-000000000010', 'Exhaust & Aftertreatment', 'exhaust-and-aftertreatment', 'AdBlue dosing units, DPF filters, SCR catalysts, NOx sensors.', 'Wind', 'https://cms.media.basworld.com/i/basgroup/Roetfilter?w=800&fmt=auto', 10),
+    ('c0000000-0000-0000-0000-000000000011', 'Steering', 'steering', 'Steering gearboxes, power steering pumps, drag links and tie rods.', 'Compass', 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80', 11),
+    ('c0000000-0000-0000-0000-000000000012', 'Hydraulics', 'hydraulics', 'PTO pumps, tipping valves, hydraulic oil tanks and cylinders.', 'Gauge', 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80', 12),
+    ('c0000000-0000-0000-0000-000000000013', 'Tyres & Rims', 'tyres-and-rims', 'Alcoa forged aluminium wheels, steel rims, wheel studs and hub caps.', 'Circle', 'https://cms.media.basworld.com/i/basgroup/alcoa?w=800&fmt=auto', 13)
+ON CONFLICT (name) DO UPDATE SET description = EXCLUDED.description, image_url = EXCLUDED.image_url, display_order = EXCLUDED.display_order;
 
 -- 4. SEED DEMONSTRATION SUPPLIERS
 INSERT INTO public.suppliers (id, name, code, contact_email, phone, country, is_verified, is_public, rating)

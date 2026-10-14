@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Metadata } from 'next';
 import { getCategories } from '@/lib/services/products';
 import {
@@ -26,19 +27,19 @@ export const metadata: Metadata = {
 };
 
 const categoryIcons: Record<string, React.ReactNode> = {
-  Cog: <Cog className="w-6 h-6" />,
-  Activity: <Activity className="w-6 h-6" />,
-  Disc: <Disc className="w-6 h-6" />,
-  RotateCw: <RotateCw className="w-6 h-6" />,
-  Truck: <Truck className="w-6 h-6" />,
-  Anchor: <Anchor className="w-6 h-6" />,
-  Zap: <Zap className="w-6 h-6" />,
-  Thermometer: <Thermometer className="w-6 h-6" />,
-  Droplets: <Droplets className="w-6 h-6" />,
-  Wind: <Wind className="w-6 h-6" />,
-  Compass: <Compass className="w-6 h-6" />,
-  Gauge: <Gauge className="w-6 h-6" />,
-  Circle: <Circle className="w-6 h-6" />,
+  Cog: <Cog className="w-5 h-5" />,
+  Activity: <Activity className="w-5 h-5" />,
+  Disc: <Disc className="w-5 h-5" />,
+  RotateCw: <RotateCw className="w-5 h-5" />,
+  Truck: <Truck className="w-5 h-5" />,
+  Anchor: <Anchor className="w-5 h-5" />,
+  Zap: <Zap className="w-5 h-5" />,
+  Thermometer: <Thermometer className="w-5 h-5" />,
+  Droplets: <Droplets className="w-5 h-5" />,
+  Wind: <Wind className="w-5 h-5" />,
+  Compass: <Compass className="w-5 h-5" />,
+  Gauge: <Gauge className="w-5 h-5" />,
+  Circle: <Circle className="w-5 h-5" />,
 };
 
 export default async function CategoriesPage() {
@@ -63,28 +64,51 @@ export default async function CategoriesPage() {
           <Link
             key={cat.id}
             href={`/categories/${cat.slug}`}
-            className="bg-white rounded-xl border border-truckora-border p-6 hover:border-brand-navy hover:shadow-lg transition-all group flex flex-col justify-between"
+            className="bg-white rounded-xl border border-truckora-border overflow-hidden hover:border-brand-navy hover:shadow-xl transition-all group flex flex-col justify-between"
           >
             <div>
-              <div className="w-12 h-12 rounded-xl bg-brand-navy/5 text-brand-navy group-hover:bg-brand-navy group-hover:text-white flex items-center justify-center transition-colors mb-4">
-                {categoryIcons[cat.iconName || 'Cog'] || <Cog className="w-6 h-6" />}
+              <div className="relative h-44 w-full bg-slate-100 overflow-hidden">
+                {cat.imageUrl ? (
+                  <Image
+                    src={cat.imageUrl}
+                    alt={cat.name}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-slate-200 text-slate-400">
+                    <Truck className="w-10 h-10 opacity-40" />
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white">
+                  <div className="w-10 h-10 rounded-lg bg-brand-navy/80 backdrop-blur-xs text-white flex items-center justify-center">
+                    {categoryIcons[cat.iconName || 'Cog'] || <Cog className="w-5 h-5" />}
+                  </div>
+                  <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-xs text-white">
+                    {cat.productCount} parts available
+                  </span>
+                </div>
               </div>
 
-              <h2 className="font-bold text-base text-slate-800 group-hover:text-brand-navy transition-colors mb-2">
-                {cat.name}
-              </h2>
+              <div className="p-6">
+                <h2 className="font-bold text-lg text-slate-800 group-hover:text-brand-navy transition-colors mb-2">
+                  {cat.name}
+                </h2>
 
-              <p className="text-xs text-slate-500 leading-relaxed mb-4">
-                {cat.description}
-              </p>
+                <p className="text-xs text-slate-500 leading-relaxed">
+                  {cat.description}
+                </p>
+              </div>
             </div>
 
-            <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+            <div className="px-6 pb-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
               <span className="font-semibold text-slate-400">
-                {cat.productCount} parts available
+                Explore assembly
               </span>
               <span className="font-bold text-brand-orange flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                <span>Browse</span>
+                <span>Browse inventory</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </span>
             </div>
