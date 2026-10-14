@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #F3F5F7;
+  --foreground: #182230;
+  --card: #FFFFFF;
+  --card-foreground: #182230;
+  --popover: #FFFFFF;
+  --popover-foreground: #182230;
+  --primary: #142B46;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F28C28;
+  --secondary-foreground: #FFFFFF;
+  --muted: #667085;
+  --muted-foreground: #667085;
+  --border: #E2E7ED;
+  --input: #E2E7ED;
+  --ring: #142B46;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbars for data tables and filter lists */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c5cdd5;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
